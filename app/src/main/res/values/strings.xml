@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidUdemyCoupon</string>
+    <string name="search">Search</string>
+    <string name="lessons">Lessons</string>
+    <string name="settings">Settings</string>
+    <string name="courses">Courses</string>
+</resources>

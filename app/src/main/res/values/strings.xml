@@ -12,4 +12,5 @@
     <string name="dark_mode">DARK MODE</string>
     <string name="new_coupon_notification">NEW COUPON NOTIFICATION</string>
     <string name="filter">Filter</string>
+    <string name="always_be_free">ALWAYS BE FREE</string>
 </resources>

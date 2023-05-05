@@ -5,12 +5,14 @@
     <color name="courseTitle">#001CBA</color>
     <color name="courseAuthor">#A1A2A6</color>
     <color name="courseCategory">#2E49E2</color>
+    <color name="lightGrey">#BEBFC3</color>
     <color name="grey">#8A8B8E</color>
+    <color name="darkGrey">#8A8B8E</color>
     <color name="golden">#FFEB3B</color>
 
+    <color name="superDarkBlue">#000627</color>
     <color name="darkBlue">#001CBA</color>
     <color name="blue">#03A9F4</color>
     <color name="lightBlue">#00BCD4</color>
-    <color name="darkGrey">#8A8B8E</color>
 
 </resources>

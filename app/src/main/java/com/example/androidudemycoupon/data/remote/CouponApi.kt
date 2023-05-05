@@ -10,5 +10,5 @@ interface CouponApi {
     suspend fun fetchAllCoupons(): Response<UdemyCouponCourse>
 
     @GET("/search/{query}")
-    suspend fun searchUdemyCoupon(@Path("query") query: String): Response<UdemyCouponCourse>
+    suspend fun searchCourseCoupon(@Path("query") query: String): Response<UdemyCouponCourse>
 }

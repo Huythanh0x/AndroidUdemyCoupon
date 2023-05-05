@@ -6,5 +6,5 @@ import com.example.androidudemycoupon.model.Coupon
 
 @Database(entities = [Coupon::class], version = 1, exportSchema = false)
 abstract class CouponDatabase : RoomDatabase() {
-    abstract fun recipeCoupon(): CouponDao
+    abstract fun couponDao(): CouponDao
 }

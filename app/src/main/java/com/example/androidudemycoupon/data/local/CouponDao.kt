@@ -14,6 +14,9 @@ interface CouponDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCoupon(coupon: Coupon)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCoupons(coupons: List<Coupon>)
+
     @Query("SELECT * FROM ${Constants.COUPON_TABLE_NAME}")
     fun getAllCoupons(): LiveData<List<Coupon>>
 

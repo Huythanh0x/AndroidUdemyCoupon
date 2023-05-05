@@ -4,4 +4,12 @@
     <string name="lessons">Lessons</string>
     <string name="settings">Settings</string>
     <string name="courses">Courses</string>
+    <string name="sign_up_date">sign up date:</string>
+    <string name="have_enrolled">have enrolled:</string>
+    <string name="huythanh0x">huythanh0x</string>
+    <string name="prefer_category">PREFER CATEGORY</string>
+    <string name="setting">SETTING</string>
+    <string name="dark_mode">DARK MODE</string>
+    <string name="new_coupon_notification">NEW COUPON NOTIFICATION</string>
+    <string name="filter">Filter</string>
 </resources>

@@ -2,7 +2,6 @@ package com.example.androidudemycoupon.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -19,6 +18,9 @@ interface CouponDao {
 
     @Query("SELECT * FROM ${Constants.COUPON_TABLE_NAME}")
     fun getAllCoupons(): LiveData<List<Coupon>>
+
+    @Query("SELECT * FROM ${Constants.COUPON_TABLE_NAME} WHERE LOWER(title) LIKE '%' || :searchQuery || '%'")
+    suspend fun queryCoupons(searchQuery: String): List<Coupon>
 
     @Query("DELETE FROM ${Constants.COUPON_TABLE_NAME}")
     suspend fun clearAllCoupons()

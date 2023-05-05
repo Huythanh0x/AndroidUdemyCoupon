@@ -8,5 +8,7 @@ class LocalDataSource @Inject constructor(private val couponDao: CouponDao) {
     fun getAllCoupons() = couponDao.getAllCoupons()
     suspend fun insertCoupons(coupons: List<Coupon>) = couponDao.insertCoupons(coupons)
     suspend fun insertCoupon(coupon: Coupon) = couponDao.insertCoupon(coupon)
+
+    suspend fun queryCoupons(searchQuery: String) = couponDao.queryCoupons(searchQuery)
     suspend fun clearAllCoupons() = couponDao.clearAllCoupons()
 }

@@ -1,6 +1,8 @@
 package com.example.androidudemycoupon.ui.search
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +10,7 @@ import com.example.androidudemycoupon.data.Repository
 import com.example.androidudemycoupon.model.Coupon
 import com.example.androidudemycoupon.model.UdemyCouponCourse
 import com.example.androidudemycoupon.util.NetWorkResult
+import com.example.androidudemycoupon.util.TimeLeft
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,8 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-    // TODO: Implement the ViewModel
     val allCoupons = repository.localDataSource.getAllCoupons()
+    val displayCoupons = MutableLiveData<List<Coupon>>()
     private val couponsResponse: MutableLiveData<NetWorkResult<UdemyCouponCourse>> =
         MutableLiveData()
 
@@ -33,6 +36,7 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun fetchAllCoupons() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.remoteDataSource.fetchAllCoupons()
@@ -43,7 +47,10 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
                     clearAllCoupons()
                     insertCoupons(coupons)
                 }
-
+                //TODO store the fetched datetime
+                it.data?.localTime?.let { fetchedTime ->
+                    TimeLeft.timeFromLastUpdate(fetchedTime)
+                }
             }
         }
     }
@@ -59,6 +66,13 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
             }
 
             else -> NetWorkResult.Error(response.message())
+        }
+    }
+
+    fun queryCoupons(querySearch: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val queryCoupons = repository.localDataSource.queryCoupons(querySearch)
+            displayCoupons.postValue(queryCoupons)
         }
     }
 }

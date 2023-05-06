@@ -1,10 +1,14 @@
 package com.example.androidudemycoupon.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.androidudemycoupon.util.Constants
+import kotlinx.parcelize.Parcelize
+
 
 @Entity(Constants.COUPON_TABLE_NAME)
+@Parcelize
 data class Coupon(
     @PrimaryKey
     val courseId: Int,
@@ -26,4 +30,4 @@ data class Coupon(
     val subCategory: String,
     val title: String,
     val usesRemaining: Int
-)
+) : Parcelable

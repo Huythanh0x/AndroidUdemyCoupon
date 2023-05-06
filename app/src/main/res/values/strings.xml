@@ -13,4 +13,6 @@
     <string name="new_coupon_notification">NEW COUPON NOTIFICATION</string>
     <string name="filter">Filter</string>
     <string name="always_be_free">ALWAYS BE FREE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

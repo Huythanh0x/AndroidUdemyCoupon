@@ -10,8 +10,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidudemycoupon.databinding.FragmentSearchBinding
 import com.example.androidudemycoupon.ui.adapter.CouponRecyclerAdapter
+import com.example.androidudemycoupon.util.TimeLeft
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,20 +22,25 @@ class SearchFragment : Fragment() {
     val binding get() = _binding!!
     private lateinit var viewModel: SearchViewModel
     val searchViewModel: SearchViewModel by viewModels()
-    val couponAdapter = CouponRecyclerAdapter()
+    private lateinit var couponAdapter: CouponRecyclerAdapter
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        couponAdapter = CouponRecyclerAdapter() {
+            val action =
+                SearchFragmentDirections.actionSearchFragmentToDetailCouponFragment(coupon = it)
+            findNavController().navigate(action)
+        }
         binding.shimmerRecyclerView.adapter = couponAdapter
+//        searchViewModel.getFetchedDateTime()
+        searchViewModel.fetchAllCoupons()
 
         return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        searchViewModel.fetchAllCoupons()
         searchViewModel.allCoupons.observe(viewLifecycleOwner) {
             couponAdapter.data = it
             updateNumberOfTheResult(it.size)
@@ -41,6 +48,9 @@ class SearchFragment : Fragment() {
         searchViewModel.displayCoupons.observe(viewLifecycleOwner) {
             couponAdapter.data = it
             updateNumberOfTheResult(it.size)
+        }
+        searchViewModel.fetchedDateTime.observe(viewLifecycleOwner) {
+            updateLastFetchDateTime(it)
         }
         binding.searchView.setOnQueryTextListener(queryQueryTextListener)
 
@@ -52,7 +62,7 @@ class SearchFragment : Fragment() {
         super.onDestroy()
     }
 
-    val queryQueryTextListener = object : SearchView.OnQueryTextListener {
+    private val queryQueryTextListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
             searchViewModel.queryCoupons(query.toString())
             Log.d("SEARCH QUERY HERE", query.toString())
@@ -66,10 +76,14 @@ class SearchFragment : Fragment() {
     }
 
     private fun updateNumberOfTheResult(size: Int) {
-        if(size > 1){
+        if (size > 1) {
             binding.numberOfCoupon.text = "There are $size results"
-        }else{
+        } else {
             binding.numberOfCoupon.text = "There are $size result"
         }
+    }
+
+    private fun updateLastFetchDateTime(fetchedTime: String) {
+        binding.lastTimeUpdate.text = TimeLeft.timeFromLastUpdate(fetchedTime)
     }
 }

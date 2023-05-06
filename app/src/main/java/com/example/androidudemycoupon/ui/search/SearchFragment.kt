@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidudemycoupon.databinding.FragmentSearchBinding
+import com.example.androidudemycoupon.ui.MainActivity
 import com.example.androidudemycoupon.ui.adapter.CouponRecyclerAdapter
 import com.example.androidudemycoupon.util.TimeLeft
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +27,7 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+        (requireActivity() as MainActivity).showBottomNavigation(true)
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         couponAdapter = CouponRecyclerAdapter() {
             val action =

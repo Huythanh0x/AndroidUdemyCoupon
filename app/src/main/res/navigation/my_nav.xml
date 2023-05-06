@@ -31,6 +31,18 @@
         <argument
             android:name="coupon"
             app:argType="com.example.androidudemycoupon.model.Coupon" />
+        <action
+            android:id="@+id/action_detailCouponFragment_to_coursePreviewFragment"
+            app:destination="@id/coursePreviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/coursePreviewFragment"
+        android:name="com.example.androidudemycoupon.ui.search.CoursePreviewFragment"
+        android:label="fragment_course_preview"
+        tools:layout="@layout/fragment_course_preview" >
+        <argument
+            android:name="coupon"
+            app:argType="com.example.androidudemycoupon.model.Coupon" />
     </fragment>
 
 </navigation>

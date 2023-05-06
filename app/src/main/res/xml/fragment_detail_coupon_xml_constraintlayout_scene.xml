@@ -24,7 +24,7 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             motion:layout_editor_absoluteY="4dp"
-            android:layout_height="10dp"
+            android:layout_height="0.1dp"
             android:layout_width="match_parent"
             android:id="@+id/card_view" />
     </ConstraintSet>

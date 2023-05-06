@@ -2,9 +2,12 @@ package com.example.androidudemycoupon.util
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.time.Duration
 import java.time.Instant
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 object TimeLeft {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -24,5 +27,14 @@ object TimeLeft {
         val startInstant = LocalDateTime.parse(startTime).toInstant(ZoneOffset.UTC)
         val endInstant = Instant.now()
         return (endInstant.toEpochMilli() - startInstant.toEpochMilli()) / (1000 * 60)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getDurationFromNow(dateTimeString: String): Long {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssXXX")
+        val dateTime = LocalDateTime.parse(dateTimeString, formatter)
+        val inputInstant = dateTime.atZone(ZoneId.systemDefault()).toInstant()
+        val now = Instant.now()
+        return Duration.between(now, inputInstant).toMinutes()
     }
 }

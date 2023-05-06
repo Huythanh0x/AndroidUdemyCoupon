@@ -20,9 +20,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment : Fragment() {
     var _binding: FragmentSearchBinding? = null
     val binding get() = _binding!!
-    private lateinit var viewModel: SearchViewModel
     val searchViewModel: SearchViewModel by viewModels()
     private lateinit var couponAdapter: CouponRecyclerAdapter
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {

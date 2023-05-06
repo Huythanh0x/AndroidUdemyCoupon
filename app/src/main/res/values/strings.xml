@@ -15,4 +15,9 @@
     <string name="always_be_free">ALWAYS BE FREE</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="coupoons_left">coupoons left</string>
+    <string name="coupons_left">coupons left</string>
+    <string name="course_length">course length</string>
+    <string name="language">language</string>
+    <string name="course_level">course level</string>
 </resources>

@@ -32,6 +32,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/time_left_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/superDarkBlue"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardMaxElevation="4dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        timeLeft="@{coupon.expiredDate}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/previewImage"
                     loadImageFromUrl="@{coupon.previewImage}"
@@ -106,8 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textSize="10sp"
                     android:textColor="@color/black"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintStart_toEndOf="@+id/ratingBar"
                     app:layout_constraintTop_toTopOf="@+id/ratingBar" />

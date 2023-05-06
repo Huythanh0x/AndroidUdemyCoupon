@@ -50,16 +50,17 @@ class SearchViewModel @Inject constructor(
                 it.data?.localTime?.let { newFetchDateTime ->
                     Log.d("NEW FETCHED DATE TIME", newFetchDateTime)
                     Log.d("OLD FETCHED DATE TIME", fetchedDateTime.value.toString())
-                    if (fetchedDateTime.value == newFetchDateTime) return@launch
-                }
-                couponsResponse.postValue(it)
-                it.data?.coupons?.let { coupons ->
-                    clearAllCoupons()
-                    insertCoupons(coupons)
-                }
-                //TODO store the fetched datetime
-                it.data?.localTime?.let { fetchedTime ->
-                    updateFetchedDateTime(fetchedTime)
+                    Log.d("RESPONSE RESULT LENGTH", it.data.coupons.size.toString())
+                    if (fetchedDateTime.value != newFetchDateTime) {
+                        couponsResponse.postValue(it)
+                        clearAllCoupons()
+                        insertCoupons(it.data.coupons)
+                        displayCoupons.postValue(it.data.coupons)
+                        //TODO store the fetched datetime
+                        it.data.localTime.let { fetchedTime ->
+                            updateFetchedDateTime(fetchedTime)
+                        }
+                    }
                 }
             }
         }

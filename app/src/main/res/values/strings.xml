@@ -10,7 +10,7 @@
     <string name="prefer_category">PREFER CATEGORY</string>
     <string name="setting">SETTING</string>
     <string name="dark_mode">DARK MODE</string>
-    <string name="new_coupon_notification">NEW COUPON NOTIFICATION</string>
+    <string name="new_coupons_notification">NEW COUPONS NOTIFICATION</string>
     <string name="filter">Filter</string>
     <string name="always_be_free">ALWAYS BE FREE</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -29,4 +29,9 @@
     <string name="enroll_now">ENROLL NOW</string>
     <string name="preview">preview</string>
     <string name="heading">HEADING</string>
+    <string name="prefer_keywords">PREFER KEYWORDS</string>
+    <string name="new_prefer_category_coupon_notification">NEW PREFER CATEGORY COUPON NOTIFICATION</string>
+    <string name="new_prefer_coupon_coupon_notification">NEW PREFER COUPON COUPON NOTIFICATION</string>
+    <string name="notification_by_categories">NOTIFICATION BY CATEGORIES</string>
+    <string name="notification_by_keywords">NOTIFICATION BY KEYWORDS</string>
 </resources>

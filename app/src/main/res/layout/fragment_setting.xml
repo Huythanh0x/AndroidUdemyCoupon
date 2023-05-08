@@ -12,116 +12,67 @@
         android:layout_height="match_parent"
         tools:context=".ui.setting.SettingFragment">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/circularImageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@drawable/avatar_placeholder"
-            app:civ_border_color="@color/black"
-            app:civ_border_width="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".1"
-            app:layout_constraintWidth_percent=".3" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView"
+            android:id="@+id/prefer_keywords_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/prefer_keywords"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/prefer_keywords_chip_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:chipSpacingHorizontal="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/prefer_keywords_textView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/prefer_categories_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/huythanh0x"
-            android:textColor="@color/black"
-            android:textSize="22sp"
+            android:text="@string/prefer_category"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/circularImageView"
-            app:layout_constraintStart_toStartOf="@+id/circularImageView"
-            app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
+            app:layout_constraintStart_toStartOf="@+id/prefer_keywords_textView"
+            app:layout_constraintTop_toBottomOf="@+id/prefer_keywords_chip_group"
+            app:layout_goneMarginStart="10dp" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/calendarImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/prefer_categories_chip_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:chipSpacingHorizontal="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/prefer_keywords_chip_group"
+            app:layout_constraintStart_toStartOf="@+id/prefer_keywords_chip_group"
+            app:layout_constraintTop_toBottomOf="@id/prefer_categories_textView" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView2"
+            android:id="@+id/setting_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/sign_up_date"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/calendarImage"
-            app:layout_constraintStart_toEndOf="@+id/calendarImage"
-            app:layout_constraintTop_toTopOf="@+id/calendarImage" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/signupText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="12/12/2023"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView2"
-            app:layout_constraintStart_toEndOf="@+id/appCompatTextView2"
-            app:layout_constraintTop_toTopOf="@+id/appCompatTextView2" />
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/couponImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/coupon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarImage" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/have_enrolled"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/couponImage"
-            app:layout_constraintStart_toEndOf="@+id/couponImage"
-            app:layout_constraintTop_toTopOf="@+id/couponImage" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/couponText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="100"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView3"
-            app:layout_constraintStart_toEndOf="@+id/appCompatTextView3"
-            app:layout_constraintTop_toTopOf="@+id/appCompatTextView3" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="@string/setting"
             android:textColor="@color/darkBlue"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
-
+            app:layout_constraintStart_toStartOf="@+id/prefer_categories_textView"
+            app:layout_constraintTop_toBottomOf="@+id/prefer_categories_chip_group" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dark_mode_text"
@@ -132,8 +83,8 @@
             android:text="@string/dark_mode"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/appCompatTextView4"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+            app:layout_constraintStart_toStartOf="@+id/setting_textView"
+            app:layout_constraintTop_toBottomOf="@+id/setting_textView" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/dark_mode_switch"
@@ -145,24 +96,64 @@
             app:layout_constraintTop_toTopOf="@+id/dark_mode_text" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/new_notification_text"
+            android:id="@+id/new_coupon_notification_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/new_coupon_notification"
+            android:text="@string/new_coupons_notification"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/dark_mode_text"
             app:layout_constraintTop_toBottomOf="@+id/dark_mode_text" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/new_notification_switch"
+            android:id="@+id/new_coupon_notification_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/new_notification_text"
+            app:layout_constraintBottom_toBottomOf="@+id/new_coupon_notification_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/new_notification_text" />
+            app:layout_constraintTop_toTopOf="@+id/new_coupon_notification_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/new_prefer_category_coupon_notification_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/notification_by_categories"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/dark_mode_text"
+            app:layout_constraintTop_toBottomOf="@+id/new_coupon_notification_text" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/new_prefer_category_coupon_notification_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/new_prefer_category_coupon_notification_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/new_prefer_category_coupon_notification_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/new_prefer_keyword_coupon_notification_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/notification_by_keywords"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/dark_mode_text"
+            app:layout_constraintTop_toBottomOf="@+id/new_prefer_category_coupon_notification_text" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/new_prefer_keyword_coupon_notification_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/new_prefer_keyword_coupon_notification_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/new_prefer_keyword_coupon_notification_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,7 +12,7 @@
         tools:context=".ui.course.CourseFragment">
 
         <WebView
-            android:id="@+id/embeded_webview"
+            android:id="@+id/courseWebView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

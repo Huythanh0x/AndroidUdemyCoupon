@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="36k students"
+                    android:text="@string/loading_students"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
@@ -147,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="99 reviews"
+                    android:text="@string/loading_reviews"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/numberOfStudentsText"
@@ -315,7 +315,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:paddingHorizontal="4dp"
-                    android:text="preview"
+                    android:text="@string/preview"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
@@ -327,8 +327,9 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@id/tools_container"
             app:layout_constraintEnd_toEndOf="@+id/card_view"
             app:layout_constraintStart_toStartOf="@+id/card_view"
             app:layout_constraintTop_toBottomOf="@+id/card_view">
@@ -343,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
-                    android:text="HEADING"
+                    android:text="@string/heading"
                     android:textColor="@color/courseTitle"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -369,7 +370,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="DESCRIPTION"
+                    android:text="@string/description"
                     android:textColor="@color/courseTitle"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -393,6 +394,67 @@
 
         </androidx.core.widget.NestedScrollView>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/tools_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/share_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/baseline_share_24"
+                android:paddingHorizontal="20dp"
+                android:text="@string/share"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@color/black" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/open_browser_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/baseline_open_in_browser_24"
+                android:paddingHorizontal="20dp"
+                android:text="@string/open_browser"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/enroll_now_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:background="@color/darkBlue"
+                android:gravity="end"
+                android:padding="8dp"
+                android:text="@string/enroll_now"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

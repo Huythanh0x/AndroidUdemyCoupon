@@ -20,4 +20,13 @@
     <string name="course_length">course length</string>
     <string name="language">language</string>
     <string name="course_level">course level</string>
+    <string name="xxx_students">xxx students</string>
+    <string name="loading_reviews">loading reviews</string>
+    <string name="loading_students">loading students</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="share">SHARE</string>
+    <string name="open_browser">OPEN BROWSER</string>
+    <string name="enroll_now">ENROLL NOW</string>
+    <string name="preview">preview</string>
+    <string name="heading">HEADING</string>
 </resources>

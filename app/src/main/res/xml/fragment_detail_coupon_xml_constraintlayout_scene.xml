@@ -19,6 +19,8 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/fab" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

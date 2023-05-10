@@ -1,8 +1,6 @@
 package com.example.androidudemycoupon.ui.search
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +8,9 @@ import com.example.androidudemycoupon.data.DataStoreRepository
 import com.example.androidudemycoupon.data.Repository
 import com.example.androidudemycoupon.model.Coupon
 import com.example.androidudemycoupon.model.UdemyCouponCourse
+import com.example.androidudemycoupon.util.Constants
 import com.example.androidudemycoupon.util.NetWorkResult
+import com.example.androidudemycoupon.util.SearchFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,15 +19,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: Repository,
-    private val dataStoreRepository: DataStoreRepository
+    private val repository: Repository, private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
-    val allCoupons = repository.localDataSource.getAllCoupons()
+    //    val allCoupons = repository.localDataSource.getAllCoupons()
     val displayCoupons = MutableLiveData<List<Coupon>>()
     private val couponsResponse: MutableLiveData<NetWorkResult<UdemyCouponCourse>> =
         MutableLiveData()
     val fetchedDateTime = MutableLiveData<String>()
-
+    var firstTimeFetchData = true
     private fun insertCoupons(coupons: List<Coupon>) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.localDataSource.insertCoupons(coupons)
@@ -40,8 +39,41 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    fun getFilteredCoupons(
+        searchFilter: SearchFilter
+    ) {
+        val language = if (searchFilter.languageFilter) "English" else ""
+        val level = searchFilter.levelFilter.toList()
+        val lowerRating = Constants.HASHMAP_RATING[searchFilter.ratingFilter]!!.first.toDouble()
+        val upperRating = Constants.HASHMAP_RATING[searchFilter.ratingFilter]!!.second.toDouble()
+        val lowerContentLength =
+            Constants.HASHMAP_CONTENT_LENGTH[searchFilter.contentLengthFilter]!!.first * 60
+        val upperContentLength =
+            Constants.HASHMAP_CONTENT_LENGTH[searchFilter.contentLengthFilter]!!.second * 60
+
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d("LANGUAGE FILTER TAG", language)
+            Log.d("LEVEL FILTER TAG", level.joinToString(" "))
+            Log.d("RATING FILTER TAG", "lowerRating: $lowerRating upperRating: $upperRating")
+            Log.d(
+                "CONTENT LENGTH FILTER TAG",
+                "lowerContentLength: $lowerContentLength upperContentLength: $upperContentLength"
+            )
+            displayCoupons.postValue(
+                repository.localDataSource.getFilteredCoupons(
+                    language,
+                    level,
+                    lowerRating,
+                    upperRating,
+                    lowerContentLength,
+                    upperContentLength
+                )
+            )
+        }
+    }
+
     fun fetchAllCoupons() {
+        if (!firstTimeFetchData) return
         getFetchedDateTime()
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.remoteDataSource.fetchAllCoupons()
@@ -60,10 +92,13 @@ class SearchViewModel @Inject constructor(
                         it.data.localTime.let { fetchedTime ->
                             updateFetchedDateTime(fetchedTime)
                         }
+                    } else {
+                        displayCoupons.postValue(repository.localDataSource.getAllCoupons())
                     }
                 }
             }
         }
+        firstTimeFetchData = false
     }
 
     private fun extractDataResponse(response: Response<UdemyCouponCourse>): NetWorkResult<UdemyCouponCourse> {
@@ -100,5 +135,9 @@ class SearchViewModel @Inject constructor(
                 fetchedDateTime.postValue(it)
             }
         }
+    }
+
+    fun updateDisplayCouponData(newListCoupons: List<Coupon>) {
+        displayCoupons.postValue(newListCoupons)
     }
 }

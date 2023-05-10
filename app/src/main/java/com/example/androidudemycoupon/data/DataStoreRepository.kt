@@ -102,16 +102,15 @@ class DataStoreRepository @Inject constructor(private val dataStore: DataStore<P
         return dataStore.data.catch {
             throw java.lang.Exception("Error at getPreferCategories()")
         }.map { preferences ->
-            preferences[PreferencesKey.preferCategories] ?: setOf(
-                "Development", "IT & Software", "Design"
-            )
+            preferences[PreferencesKey.preferCategories] ?: Constants.DEFAULT_PREFER_CATEGORIES
         }
     }
 
     suspend fun addPreferCategories(category: String) {
         dataStore.edit { preferences ->
             val currentSet =
-                preferences[PreferencesKey.preferCategories]?.toMutableSet() ?: mutableSetOf()
+                preferences[PreferencesKey.preferCategories]?.toMutableSet()
+                    ?: Constants.DEFAULT_PREFER_CATEGORIES.toMutableSet()
             currentSet.add(category)
             Log.d("addPreferCategories", currentSet.toString())
             preferences[PreferencesKey.preferCategories] = currentSet
@@ -121,7 +120,8 @@ class DataStoreRepository @Inject constructor(private val dataStore: DataStore<P
     suspend fun removePreferCategories(category: String) {
         dataStore.edit { preferences ->
             val currentSet =
-                preferences[PreferencesKey.preferCategories]?.toMutableSet() ?: mutableSetOf()
+                preferences[PreferencesKey.preferCategories]?.toMutableSet()
+                    ?: Constants.DEFAULT_PREFER_CATEGORIES.toMutableSet()
             currentSet.remove(category)
             Log.d("addPreferCategories", currentSet.toString())
             preferences[PreferencesKey.preferCategories] = currentSet
@@ -132,16 +132,15 @@ class DataStoreRepository @Inject constructor(private val dataStore: DataStore<P
         return dataStore.data.catch {
             throw java.lang.Exception("Error at getPreferKeywords()")
         }.map { preferences ->
-            preferences[PreferencesKey.preferKeyWords] ?: setOf(
-                "python", "kotlin", "android"
-            )
+            preferences[PreferencesKey.preferKeyWords] ?: Constants.DEFAULT_PREFER_KEYWORDS
         }
     }
 
     suspend fun addPreferKeywords(keyword: String) {
         dataStore.edit { preferences ->
             val currentSet =
-                preferences[PreferencesKey.preferKeyWords]?.toMutableSet() ?: mutableSetOf()
+                preferences[PreferencesKey.preferKeyWords]?.toMutableSet()
+                    ?: Constants.DEFAULT_PREFER_KEYWORDS.toMutableSet()
             currentSet.add(keyword)
             preferences[PreferencesKey.preferKeyWords] = currentSet
         }
@@ -150,7 +149,8 @@ class DataStoreRepository @Inject constructor(private val dataStore: DataStore<P
     suspend fun removePreferKeywords(keyword: String) {
         dataStore.edit { preferences ->
             val currentSet =
-                preferences[PreferencesKey.preferKeyWords]?.toMutableSet() ?: mutableSetOf()
+                preferences[PreferencesKey.preferKeyWords]?.toMutableSet()
+                    ?: Constants.DEFAULT_PREFER_KEYWORDS.toMutableSet()
             currentSet.remove(keyword)
             Log.d("addPreferCategories", currentSet.toString())
             preferences[PreferencesKey.preferKeyWords] = currentSet

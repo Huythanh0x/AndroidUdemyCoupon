@@ -43,7 +43,7 @@ object UdemyCouponBindingAdapter {
         if (students <= 1) {
             textView.text = "$students review"
         } else if (students > 1000) {
-            textView.text = "${students / 1000}K reviews"
+            textView.text = "${"%.1f".format(students.toFloat() / 60)}K reviews"
         } else {
             textView.text = "$students reviews"
         }

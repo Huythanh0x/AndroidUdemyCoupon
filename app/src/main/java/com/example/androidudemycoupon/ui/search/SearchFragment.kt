@@ -1,12 +1,10 @@
 package com.example.androidudemycoupon.ui.search
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,30 +21,26 @@ class SearchFragment : Fragment() {
     val binding get() = _binding!!
     val searchViewModel: SearchViewModel by viewModels()
     private lateinit var couponAdapter: CouponRecyclerAdapter
-    @RequiresApi(Build.VERSION_CODES.O)
+    private lateinit var sideSheet: SearchFilterSideSheetDialog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         (requireActivity() as MainActivity).showBottomNavigation(true)
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        sideSheet = SearchFilterSideSheetDialog(requireContext())
+        sideSheet.initState()
+        sideSheet.onChipCheckListener() {
+            searchViewModel.getFilteredCoupons(it)
+        }
         couponAdapter = CouponRecyclerAdapter() {
             val action =
                 SearchFragmentDirections.actionSearchFragmentToDetailCouponFragment(coupon = it)
             findNavController().navigate(action)
         }
         binding.shimmerRecyclerView.adapter = couponAdapter
-//        searchViewModel.getFetchedDateTime()
-        searchViewModel.fetchAllCoupons()
-
-        return binding.root
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        searchViewModel.allCoupons.observe(viewLifecycleOwner) {
-            couponAdapter.data = it
-            updateNumberOfTheResult(it.size)
-        }
+//        searchViewModel.allCoupons.observe(viewLifecycleOwner) {
+//            searchViewModel.updateDisplayCouponData(it)
+//        }
         searchViewModel.displayCoupons.observe(viewLifecycleOwner) {
             couponAdapter.data = it
             updateNumberOfTheResult(it.size)
@@ -55,8 +49,14 @@ class SearchFragment : Fragment() {
             updateLastFetchDateTime(it)
         }
         binding.searchView.setOnQueryTextListener(queryQueryTextListener)
-
-        super.onViewCreated(view, savedInstanceState)
+        binding.filterBtn.setOnClickListener {
+            sideSheet.show()
+            sideSheet.loadDefaultFilter() {
+                searchViewModel.getFilteredCoupons(it)
+            }
+        }
+        searchViewModel.fetchAllCoupons()
+        return binding.root
     }
 
     override fun onDestroy() {

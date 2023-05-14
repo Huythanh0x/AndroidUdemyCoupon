@@ -48,11 +48,6 @@ class DetailCouponFragment : Fragment() {
         }
         return binding.root
     }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
 }
 
 fun shareLink(url: String, title: String, context: Context) {

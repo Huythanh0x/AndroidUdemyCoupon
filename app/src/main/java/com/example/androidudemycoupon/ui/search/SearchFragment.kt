@@ -39,9 +39,6 @@ class SearchFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.shimmerRecyclerView.adapter = couponAdapter
-//        searchViewModel.allCoupons.observe(viewLifecycleOwner) {
-//            searchViewModel.updateDisplayCouponData(it)
-//        }
         searchViewModel.displayCoupons.observe(viewLifecycleOwner) {
             binding.shimmerRecyclerView.hideShimmer()
             couponAdapter.data = it
@@ -68,11 +65,6 @@ class SearchFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
     private val queryQueryTextListener = object : SearchView.OnQueryTextListener {

@@ -437,10 +437,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/enroll_now_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|end"
                 android:background="@color/darkBlue"
-                android:gravity="end"
+                android:gravity="end|center_vertical"
                 android:padding="8dp"
                 android:text="@string/enroll_now"
                 android:textColor="@color/white"

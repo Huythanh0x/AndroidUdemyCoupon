@@ -104,8 +104,4 @@ class CoursePreviewFragment : Fragment() {
     private var videoPlayView: View? = null
     private var fullScreenCallback: WebChromeClient.CustomViewCallback? = null
 
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
 }

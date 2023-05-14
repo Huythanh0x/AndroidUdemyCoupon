@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailCouponFragment"
-            app:destination="@id/detailCouponFragment" />
+            app:destination="@id/detailCouponFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/courseFragment"
@@ -33,16 +37,24 @@
             app:argType="com.example.androidudemycoupon.model.Coupon" />
         <action
             android:id="@+id/action_detailCouponFragment_to_coursePreviewFragment"
-            app:destination="@id/coursePreviewFragment" />
+            app:destination="@id/coursePreviewFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_detailCouponFragment_to_udemyWebFragment"
-            app:destination="@id/udemyWebFragment" />
+            app:destination="@id/udemyWebFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/coursePreviewFragment"
         android:name="com.example.androidudemycoupon.ui.search.CoursePreviewFragment"
         android:label="fragment_course_preview"
-        tools:layout="@layout/fragment_course_preview" >
+        tools:layout="@layout/fragment_course_preview">
         <argument
             android:name="coupon"
             app:argType="com.example.androidudemycoupon.model.Coupon" />
@@ -51,7 +63,7 @@
         android:id="@+id/udemyWebFragment"
         android:name="com.example.androidudemycoupon.ui.search.UdemyWebFragment"
         android:label="fragment_udemy_web"
-        tools:layout="@layout/fragment_udemy_web" >
+        tools:layout="@layout/fragment_udemy_web">
         <argument
             android:name="coupon"
             app:argType="com.example.androidudemycoupon.model.Coupon" />

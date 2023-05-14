@@ -1,5 +1,6 @@
 package com.example.androidudemycoupon.ui.search
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,28 +12,30 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import android.widget.VideoView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.example.androidudemycoupon.R
+import com.example.androidudemycoupon.databinding.FragmentCoursePreviewBinding
 import com.example.androidudemycoupon.ui.MainActivity
 
 
 class CoursePreviewFragment : Fragment() {
+    var _binding: FragmentCoursePreviewBinding? = null
+    val binding get() = _binding!!
     private val args by navArgs<CoursePreviewFragmentArgs>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         (requireActivity() as MainActivity).showBottomNavigation(false)
-        return inflater.inflate(R.layout.fragment_course_preview, container, false)
+        _binding = FragmentCoursePreviewBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val previewUrl = "https://www.udemy.com" + args.coupon.previewVideo
-        val webView = view.findViewById<WebView>(R.id.preview_webview)
-        container = view.findViewById(R.id.video_container)
         videoPlayView = VideoView(requireContext())
 
-        webView.settings.apply {
+        binding.previewWebview.settings.apply {
             domStorageEnabled = true
             allowFileAccess = true
             allowContentAccess = true
@@ -43,7 +46,7 @@ class CoursePreviewFragment : Fragment() {
             mediaPlaybackRequiresUserGesture = false
         }
 
-        webView.webChromeClient = object : WebChromeClient() {
+        binding.previewWebview.webChromeClient = object : WebChromeClient() {
             override fun onShowCustomView(view: View?, callback: CustomViewCallback?) {
                 super.onShowCustomView(view, callback)
                 if (view is FrameLayout) {
@@ -52,8 +55,8 @@ class CoursePreviewFragment : Fragment() {
                     view.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
                             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-                    webView.visibility = View.GONE
-                    container.addView(
+                    binding.previewWebview.visibility = View.GONE
+                    binding.videoContainer.addView(
                         view, FrameLayout.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.MATCH_PARENT
@@ -72,13 +75,24 @@ class CoursePreviewFragment : Fragment() {
                 videoPlayView = null
                 fullScreenCallback?.onCustomViewHidden()
                 fullScreenCallback = null
-                webView.visibility = View.VISIBLE
+                binding.previewWebview.visibility = View.VISIBLE
             }
         }
 
 
-        webView.apply {
-            webViewClient = WebViewClient()
+        binding.previewWebview.apply {
+            webViewClient = object : WebViewClient() {
+                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                    binding.progressBarContainer.isVisible = true
+                    super.onPageStarted(view, url, favicon)
+                }
+
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    binding.progressBarContainer.isVisible = false
+                    binding.previewWebview.isVisible = true
+                    super.onPageFinished(view, url)
+                }
+            }
 //            webChromeClient = WebChromeClient()
             setLayerType(View.LAYER_TYPE_HARDWARE, null)
             loadUrl(previewUrl)
@@ -89,5 +103,9 @@ class CoursePreviewFragment : Fragment() {
 
     private var videoPlayView: View? = null
     private var fullScreenCallback: WebChromeClient.CustomViewCallback? = null
-    private lateinit var container: FrameLayout
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }

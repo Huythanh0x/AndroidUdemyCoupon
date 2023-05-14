@@ -74,6 +74,7 @@ class SearchViewModel @Inject constructor(
 
     fun fetchAllCoupons(forceFetch: Boolean = false) {
         if (!firstTimeFetchData && !forceFetch) return
+        getFetchedDateTime()
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.remoteDataSource.fetchAllCoupons()
             Log.d("RESPONSE RESULT", response.toString())
@@ -81,18 +82,17 @@ class SearchViewModel @Inject constructor(
                 it.data?.localTime?.let { newFetchDateTime ->
                     Log.d("NEW FETCHED DATE TIME", newFetchDateTime)
                     Log.d("OLD FETCHED DATE TIME", fetchedDateTime.value.toString())
-                    Log.d("RESPONSE RESULT LENGTH", it.data.coupons.size.toString())
-                    if (fetchedDateTime.value != newFetchDateTime) {
+                    if (fetchedDateTime.value != newFetchDateTime || displayCoupons.value?.isEmpty() == true) {
                         couponsResponse.postValue(it)
                         clearAllCoupons()
                         insertCoupons(it.data.coupons)
                         displayCoupons.postValue(it.data.coupons)
+                        Log.d("UPDATE NEW COURSES TO DATABASE", it.data.coupons.size.toString())
                         //TODO store the fetched datetime
                         it.data.localTime.let { fetchedTime ->
                             updateFetchedDateTime(fetchedTime)
                         }
                     } else {
-                        getFetchedDateTime()
                         displayCoupons.postValue(repository.localDataSource.getAllCoupons())
                     }
                 }

@@ -70,4 +70,7 @@
     <string name="channel_description">udemy_coupon_channel</string>
     <string name="channel_name">udemy_coupn_channel_name</string>
     <string name="channel_id">channel_id</string>
+    <string name="loading_previews_videos">LOADING PREVIEWS VIDEOS</string>
+    <string name="loading_enroll_page">LOADING ENROLL PAGE</string>
+    <string name="loading_your_courses">LOADING YOUR COURSES</string>
 </resources>

@@ -27,6 +27,7 @@ class SearchFragment : Fragment() {
     ): View {
         (requireActivity() as MainActivity).showBottomNavigation(true)
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.shimmerRecyclerView.showShimmer()
         sideSheet = SearchFilterSideSheetDialog(requireContext())
         sideSheet.initState()
         sideSheet.onChipCheckListener() {
@@ -42,6 +43,7 @@ class SearchFragment : Fragment() {
 //            searchViewModel.updateDisplayCouponData(it)
 //        }
         searchViewModel.displayCoupons.observe(viewLifecycleOwner) {
+            binding.shimmerRecyclerView.hideShimmer()
             couponAdapter.data = it
             updateNumberOfTheResult(it.size)
         }
@@ -58,7 +60,9 @@ class SearchFragment : Fragment() {
         searchViewModel.fetchAllCoupons()
         binding.refreshLayout.apply {
             this.setOnRefreshListener {
+                binding.shimmerRecyclerView.showShimmer()
                 searchViewModel.fetchAllCoupons(forceFetch = true)
+                binding.shimmerRecyclerView.hideShimmer()
                 binding.refreshLayout.isRefreshing = false
             }
         }

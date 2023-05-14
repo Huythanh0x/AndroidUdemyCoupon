@@ -1,28 +1,31 @@
 package com.example.androidudemycoupon.ui.course
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.androidudemycoupon.R
+import com.example.androidudemycoupon.databinding.FragmentCourseBinding
 import com.example.androidudemycoupon.ui.MainActivity
 
 class CourseFragment : Fragment() {
+    var _binding: FragmentCourseBinding? = null
+    val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         (requireActivity() as MainActivity).showBottomNavigation(true)
-        return inflater.inflate(R.layout.fragment_course, container, false)
+        _binding = FragmentCourseBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val webView = view.findViewById<WebView>(R.id.courseWebView)
-        webView.settings.apply {
+        binding.courseWebView.settings.apply {
             // Enable JavaScript
             javaScriptEnabled = true
             // Enable support for cookies
@@ -42,19 +45,26 @@ class CourseFragment : Fragment() {
             // Enable support for autofill of user data
             savePassword = true
         }
-        webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
-            ): Boolean {
-                // Load the URL in the WebView
-                view?.loadUrl(request?.url.toString())
-                return true
+        binding.courseWebView.webViewClient = object : WebViewClient() {
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                binding.progressBarContainer.isVisible = true
+                super.onPageStarted(view, url, favicon)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                binding.progressBarContainer.isVisible = false
+                binding.courseWebView.isVisible = true
+                super.onPageFinished(view, url)
             }
         }
-        webView.loadUrl("https://www.udemy.com/home/my-courses/learning/")
+        binding.courseWebView.loadUrl("https://www.udemy.com/home/my-courses/learning/")
 
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

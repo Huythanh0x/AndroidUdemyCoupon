@@ -56,6 +56,13 @@ class SearchFragment : Fragment() {
             }
         }
         searchViewModel.fetchAllCoupons()
+        binding.refreshLayout.apply {
+            this.setOnRefreshListener {
+                searchViewModel.fetchAllCoupons(forceFetch = true)
+                binding.refreshLayout.isRefreshing = false
+            }
+        }
+
         return binding.root
     }
 

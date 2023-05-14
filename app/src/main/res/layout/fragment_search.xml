@@ -101,15 +101,22 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.todkars.shimmer.ShimmerRecyclerView
-            android:id="@+id/shimmerRecyclerView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:shimmer_recycler_layout="@layout/coupon_item_row_holder"
-            app:spanCount="2"
-            tools:itemCount="10"
-            tools:listitem="@layout/coupon_item_row" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.todkars.shimmer.ShimmerRecyclerView
+                android:id="@+id/shimmerRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:shimmer_recycler_layout="@layout/coupon_item_row_holder"
+                app:spanCount="2"
+                tools:itemCount="10"
+                tools:listitem="@layout/coupon_item_row" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

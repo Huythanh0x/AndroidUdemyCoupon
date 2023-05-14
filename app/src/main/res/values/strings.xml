@@ -67,4 +67,7 @@
     <string name="above_3_5">Above 3.5</string>
     <string name="above_4_0">Above 4.0</string>
     <string name="discard_filter">DISCARD FILTER</string>
+    <string name="channel_description">udemy_coupon_channel</string>
+    <string name="channel_name">udemy_coupn_channel_name</string>
+    <string name="channel_id">channel_id</string>
 </resources>

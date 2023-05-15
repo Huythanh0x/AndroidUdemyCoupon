@@ -20,6 +20,7 @@
                 android:id="@+id/collapsing_toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/black"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
                 <!--app:layout_collapseMode : parallax means an animation effect, pin means fixed.-->
                 <androidx.appcompat.widget.AppCompatImageView
@@ -47,7 +48,7 @@
                     android:layout_gravity="bottom"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Loading coupons"
+                    android:text="@string/loading_coupons"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -60,7 +61,7 @@
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
-                    android:text="last fetch time"
+                    android:text="@string/last_fetch_time"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -111,6 +112,7 @@
                 android:id="@+id/shimmerRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/backgroundRecyclerView"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:shimmer_recycler_layout="@layout/coupon_item_row_holder"

@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="dark">#202020</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="courseTitle">#001CBA</color>
-    <color name="courseAuthor">#A1A2A6</color>
-    <color name="courseCategory">#2E49E2</color>
+    <color name="superLightGrey">#E5E6ED</color>
     <color name="lightGrey">#BEBFC3</color>
     <color name="grey">#8A8B8E</color>
     <color name="darkGrey">#8A8B8E</color>
     <color name="golden">#FFEB3B</color>
-
     <color name="superDarkBlue">#000627</color>
     <color name="darkBlue">#001CBA</color>
     <color name="blue">#03A9F4</color>
     <color name="lightBlue">#00BCD4</color>
-
+    <!-- DAY NIGHT   -->
+    <color name="courseTitle">@color/lightBlue</color>
+    <color name="courseAuthor">@color/darkGrey</color>
+    <color name="courseCategory">@color/lightBlue</color>
+    <color name="primaryBackground">@color/dark</color>
+    <color name="timeLeftBackground">@color/white</color>
+    <color name="timeLeftTextColor">@color/black</color>
+    <color name="primaryTextColor">@color/white</color>
+    <color name="headingTitle">@color/lightBlue</color>
+    <color name="cardBackgroundCategory">@color/black</color>
+    <color name="backgroundChip">@color/darkGrey</color>
+    <color name="backgroundAddChip">@color/blue</color>
+    <color name="enrollButtonBackground">@color/superDarkBlue</color>
+    <color name="backgroundTools">@color/darkGrey</color>
+    <color name="iconTintColor">@color/white</color>
+    <color name="backgroundRecyclerView">@color/black</color>
 </resources>

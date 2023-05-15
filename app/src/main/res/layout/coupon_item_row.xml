@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/primaryBackground"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:cardMaxElevation="4dp"
@@ -36,7 +36,7 @@
                     android:id="@+id/time_left_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/superDarkBlue"
+                    app:cardBackgroundColor="@color/timeLeftBackground"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="4dp"
                     app:cardMaxElevation="4dp"
@@ -49,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="8dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/timeLeftTextColor"
                         android:textSize="12sp" />
                 </androidx.cardview.widget.CardView>
 
@@ -127,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintStart_toEndOf="@+id/ratingBar"

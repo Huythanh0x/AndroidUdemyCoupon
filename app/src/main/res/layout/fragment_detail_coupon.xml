@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/primaryBackground"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:cardMaxElevation="4dp"
@@ -40,7 +40,7 @@
                     android:id="@+id/time_left_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/superDarkBlue"
+                    app:cardBackgroundColor="@color/timeLeftBackground"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="4dp"
                     app:cardMaxElevation="4dp"
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="8dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/timeLeftTextColor"
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
@@ -171,7 +171,7 @@
                         android:paddingHorizontal="12dp"
                         android:text="@string/coupons_left"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="10sp" />
 
                     <View
@@ -207,7 +207,7 @@
                         android:paddingHorizontal="12dp"
                         android:text="@string/course_length"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="10sp" />
 
                     <View
@@ -244,7 +244,7 @@
                         android:paddingHorizontal="12dp"
                         android:text="@string/course_level"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="10sp" />
 
                     <View
@@ -280,7 +280,7 @@
                         android:paddingHorizontal="12dp"
                         android:text="@string/language"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="10sp" />
 
                     <View
@@ -305,6 +305,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:drawableTop="@drawable/baseline_play_circle_24"
+                    android:drawableTint="@color/primaryTextColor"
                     android:src="@drawable/baseline_play_circle_24"
                     android:text="@string/preview"
                     android:textSize="10sp"
@@ -337,7 +338,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/heading"
-                    android:textColor="@color/courseTitle"
+                    android:textColor="@color/headingTitle"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -350,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@{coupon.heading}"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/appCompatTextView5"
@@ -363,7 +364,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/description"
-                    android:textColor="@color/courseTitle"
+                    android:textColor="@color/headingTitle"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/headline_text"
@@ -375,7 +376,7 @@
                     parseHTML="@{coupon.description}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryTextColor"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@id/appCompatTextView6"
@@ -390,7 +391,7 @@
             android:id="@+id/tools_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/lightGrey"
+            android:background="@color/backgroundTools"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -402,6 +403,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/baseline_share_24"
+                android:drawableTint="@color/iconTintColor"
                 android:paddingHorizontal="20dp"
                 android:text="@string/share"
                 android:textAlignment="center"
@@ -412,7 +414,7 @@
                 android:layout_width="1dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@color/black" />
+                android:background="@color/primaryTextColor" />
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -422,6 +424,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/baseline_open_in_browser_24"
+                android:drawableTint="@color/iconTintColor"
                 android:paddingHorizontal="20dp"
                 android:text="@string/open_browser"
                 android:textAlignment="center"
@@ -439,7 +442,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|end"
-                android:background="@color/darkBlue"
+                android:background="@color/enrollButtonBackground"
                 android:gravity="end|center_vertical"
                 android:padding="8dp"
                 android:text="@string/enroll_now"

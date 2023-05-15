@@ -171,7 +171,7 @@ class SettingFragment : Fragment() {
             closeIconStartPadding = 0f
             isCloseIconVisible = true
             isClickable = false
-
+            setChipBackgroundColorResource(R.color.backgroundChip)
         }
     }
 
@@ -179,7 +179,7 @@ class SettingFragment : Fragment() {
         chip.apply {
             text = "Add New"
             isClickable = true
-            setChipBackgroundColorResource(R.color.blue)
+            setChipBackgroundColorResource(R.color.backgroundAddChip)
         }
     }
 }

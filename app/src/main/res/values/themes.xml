@@ -1,14 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AndroidUdemyCoupon" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+    <style name="Base.Theme.AndroidUdemyCoupon" parent="Theme.MaterialComponents.Light.DarkActionBar" />
 
-    <style name="Theme.AndroidUdemyCoupon" parent="Base.Theme.AndroidUdemyCoupon" />
+    <style name="Theme.AndroidUdemyCoupon" parent="Base.Theme.AndroidUdemyCoupon">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/darkBlue</item>
+        <item name="colorAccent">@color/lightBlue</item>
+    </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/grey</item>
-        <item name="colorControlActivated">@color/lightBlue</item>
+        <item name="colorControlActivated">@color/golden</item>
     </style>
 </resources>

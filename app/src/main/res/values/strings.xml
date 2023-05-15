@@ -73,4 +73,6 @@
     <string name="loading_previews_videos">LOADING PREVIEWS VIDEOS</string>
     <string name="loading_enroll_page">LOADING ENROLL PAGE</string>
     <string name="loading_your_courses">LOADING YOUR COURSES</string>
+    <string name="loading_coupons">Loading coupons</string>
+    <string name="last_fetch_time">last fetch time</string>
 </resources>

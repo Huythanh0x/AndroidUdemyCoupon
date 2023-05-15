@@ -84,6 +84,7 @@
                         android:layout_marginHorizontal="20dp"
                         android:background="@drawable/background_searchview"
                         android:iconifiedByDefault="true"
+                        android:imeOptions="actionSearch"
                         app:defaultQueryHint="Search for you"
                         app:queryHint="Search for you"
                         app:searchIcon="@drawable/baseline_search_24" />

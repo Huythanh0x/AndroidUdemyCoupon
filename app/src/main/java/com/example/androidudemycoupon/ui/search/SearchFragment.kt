@@ -1,10 +1,12 @@
 package com.example.androidudemycoupon.ui.search
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -69,8 +71,9 @@ class SearchFragment : Fragment() {
 
     private val queryQueryTextListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
-            searchViewModel.queryCoupons(query.toString())
-            Log.d("SEARCH QUERY HERE", query.toString())
+            hideKeyboard()
+            searchViewModel.queryCoupons(query.toString().trim())
+            Log.d("SEARCH QUERY HERE", query.toString().trim())
             return true
         }
 
@@ -78,6 +81,12 @@ class SearchFragment : Fragment() {
 //            TODO
             return true
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.searchView.windowToken, 0)
     }
 
     private fun updateNumberOfTheResult(size: Int) {
